@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pocketreg-borzoi-mvp"
+version = "0.1.0"
+description = "Week-2/Week-3 MVP scaffold for Borzoi K562 RNA-seq query distillation."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "pyyaml",
+  "matplotlib",
+  "psutil",
+]
+
+[project.optional-dependencies]
+full = [
+  "torch",
+  "tensorflow==2.15.*",
+  "pandas",
+  "scipy",
+  "scikit-learn",
+  "pyfaidx",
+  "pysam",
+  "h5py",
+  "zarr",
+  "pyarrow",
+  "tqdm",
+  "pytest",
+  "rich",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"

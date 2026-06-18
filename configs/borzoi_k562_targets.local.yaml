@@ -1,0 +1,71 @@
+selection_mode: metadata_only_pending_rich_cache
+primary_targets:
+- index: 0
+  identifier: ENCFF980ZHM+
+  description: RNA:K562
+  name: ENCFF980ZHM+:RNA:K562
+aux_targets:
+- index: 1
+  identifier: ENCFF980ZHM-
+  description: RNA:K562
+  name: ENCFF980ZHM-:RNA:K562
+- index: 2
+  identifier: ENCFF132DVY+
+  description: RNA:K562
+  name: ENCFF132DVY+:RNA:K562
+- index: 3
+  identifier: ENCFF132DVY-
+  description: RNA:K562
+  name: ENCFF132DVY-:RNA:K562
+- index: 4
+  identifier: ENCFF919EXM+
+  description: RNA:K562
+  name: ENCFF919EXM+:RNA:K562
+- index: 5
+  identifier: ENCFF919EXM-
+  description: RNA:K562
+  name: ENCFF919EXM-:RNA:K562
+- index: 6
+  identifier: ENCFF552CYS+
+  description: RNA:K562
+  name: ENCFF552CYS+:RNA:K562
+- index: 7
+  identifier: ENCFF552CYS-
+  description: RNA:K562
+  name: ENCFF552CYS-:RNA:K562
+- index: 8
+  identifier: ENCFF991BRF
+  description: RNA:K562
+  name: ENCFF991BRF:RNA:K562
+- index: 9
+  identifier: ENCFF769VLM
+  description: RNA:K562
+  name: ENCFF769VLM:RNA:K562
+- index: 10
+  identifier: ENCFF516KYO+
+  description: RNA:K562 cytosolic fraction
+  name: ENCFF516KYO+:RNA:K562 cytosolic fraction
+- index: 11
+  identifier: ENCFF516KYO-
+  description: RNA:K562 cytosolic fraction
+  name: ENCFF516KYO-:RNA:K562 cytosolic fraction
+- index: 12
+  identifier: ENCFF119ONM+
+  description: RNA:K562
+  name: ENCFF119ONM+:RNA:K562
+- index: 13
+  identifier: ENCFF119ONM-
+  description: RNA:K562
+  name: ENCFF119ONM-:RNA:K562
+- index: 14
+  identifier: ENCFF669RVI+
+  description: RNA:K562 nuclear fraction
+  name: ENCFF669RVI+:RNA:K562 nuclear fraction
+- index: 15
+  identifier: ENCFF669RVI-
+  description: RNA:K562 nuclear fraction
+  name: ENCFF669RVI-:RNA:K562 nuclear fraction
+- index: 16
+  identifier: ENCFF124AUH+
+  description: RNA:K562 chromatin fraction
+  name: ENCFF124AUH+:RNA:K562 chromatin fraction

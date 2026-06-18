@@ -1,0 +1,24 @@
+seed: 42
+task: k562_delta
+assets_config: configs/borzoi_assets.local.yaml
+delta_labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_delta_labels.parquet
+fasta_path: /path/to/hg38.fa
+output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+run_name: k562_delta_1m_32kb
+data:
+  local_context_len: 32768
+  target_standardize: true
+  metadata_features: true
+model:
+  preset: delta_small_1m
+  channels: 128
+  num_blocks: 7
+  stem_stride: 4
+  dropout: 0.15
+  head_hidden: 256
+train:
+  batch_size: 32
+  max_epochs: 75
+  lr: 2e-4
+  weight_decay: 1e-4
+  allow_local: false

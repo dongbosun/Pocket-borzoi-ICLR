@@ -1,0 +1,22 @@
+cluster:
+  backend: slurm
+  conda_env: pocketreg_borzoi
+  conda_sh: ~/miniconda3/etc/profile.d/conda.sh
+  log_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm
+  scratch_env_vars: [SLURM_TMPDIR, TMPDIR]
+
+jobs:
+  teacher_inference:
+    gres: gpu:1
+    cpus_per_task: 8
+    mem: 64G
+    time: "08:00:00"
+  student_training:
+    gres: gpu:1
+    cpus_per_task: 8
+    mem: 64G
+    time: "12:00:00"
+  merge:
+    cpus_per_task: 4
+    mem: 32G
+    time: "02:00:00"

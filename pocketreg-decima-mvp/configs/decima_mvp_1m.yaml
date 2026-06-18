@@ -1,0 +1,36 @@
+seed: 13
+manifest_path: data/processed/decima_mvp/manifest.parquet
+fasta_path: /path/to/hg38.fa
+output_dir: outputs/runs/decima_mvp_1m
+context_len: 65536
+model:
+  preset: small_1m
+  channels: 128
+  num_blocks: 8
+  kernel_size: 3
+  stem_stride: 8
+  pool_every: 2
+  dropout: 0.1
+  head_hidden: 256
+  norm: batchnorm
+train:
+  batch_size: 8
+  num_workers: 4
+  max_epochs: 50
+  lr: 0.0002
+  weight_decay: 0.0001
+  loss: huber
+  huber_delta: 1.0
+  optimizer: adamw
+  scheduler: cosine
+  early_stopping_patience: 8
+  grad_clip_norm: 1.0
+  amp: false
+  device: auto
+  target_standardize: true
+eval:
+  metrics: [pearson, spearman, r2, mae, rmse]
+logging:
+  log_every_n_steps: 25
+  save_plots: true
+  save_predictions: true

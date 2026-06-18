@@ -1,0 +1,15 @@
+seed: 42
+task: k562_delta_toy
+toy: true
+output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+run_name: toy_delta
+data:
+  local_context_len: 512
+  target_standardize: true
+  metadata_features: true
+model:
+  preset: toy_linear_delta
+train:
+  batch_size: 16
+  max_epochs: 2
+  allow_local: true

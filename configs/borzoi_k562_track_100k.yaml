@@ -1,0 +1,37 @@
+seed: 42
+task: k562_track
+assets_config: configs/borzoi_assets.local.yaml
+manifest_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
+labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_labels.parquet
+fasta_path: /path/to/hg38.fa
+output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+run_name: k562_track_100k_64kb
+data:
+  context_len: 65536
+  aggregation: gene_body_log1p_mean
+  target_standardize: true
+  augment_rc: false
+model:
+  preset: tiny_100k
+  channels: 64
+  num_blocks: 6
+  stem_stride: 8
+  dropout: 0.1
+  head_hidden: 128
+train:
+  batch_size: 16
+  num_workers: 4
+  max_epochs: 50
+  lr: 3e-4
+  weight_decay: 1e-4
+  loss: huber
+  huber_delta: 1.0
+  optimizer: adamw
+  scheduler: cosine
+  early_stopping_patience: 8
+  grad_clip_norm: 1.0
+  device: auto
+  allow_local: false
+eval:
+  save_predictions: true
+  save_plots: true

@@ -1,0 +1,45 @@
+seed: 42
+task: k562_delta_v2
+delta_labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_delta_labels.parquet
+manifest_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
+fasta_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa
+output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+run_name: k562_delta_v2_full_64kb
+
+data:
+  local_context_len: 65536
+  metadata_features: true
+  target_scale: 0.001
+  target_scale_quantile: 0.90
+  target_scale_default: 0.001
+  effect_quantile: 0.90
+
+model:
+  channels: 64
+  num_blocks: 4
+  stem_stride: 8
+  dropout: 0.1
+  head_hidden: 128
+
+train:
+  batch_size: 16
+  num_workers: 4
+  max_epochs: 6
+  lr: 0.0003
+  weight_decay: 0.0001
+  huber_delta: 1.0
+  effect_loss_weight: 0.25
+  effect_balanced_sampler: true
+  sample_weight_alpha: 4.0
+  sample_weight_cap: 20.0
+  optimizer: adamw
+  scheduler: cosine
+  early_stopping_patience: 3
+  grad_clip_norm: 1.0
+  device: auto
+  allow_local: false
+
+eval:
+  top_effect_quantiles: [0.9, 0.95, 0.99]
+  save_predictions: true
+  save_plots: true

@@ -1,0 +1,70 @@
+# Keep this home repo lightweight. Generated artifacts live under:
+# /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR
+
+# Local assets, downloaded references, cloned external repos, and generated data.
+/external/
+configs/borzoi_assets.local.yaml
+
+/data/
+
+/outputs/
+/results/
+/checkpoints/
+/interim/
+/logs/
+/plots/
+/plots_tables/
+
+# Nested legacy project artifacts. Keep its source tree, but not generated data.
+/pocketreg-decima-mvp/data/
+/pocketreg-decima-mvp/outputs/
+
+# Model and intermediate artifacts should never be committed from any path.
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.h5
+*.hdf5
+*.h5ad
+*.npz
+*.npy
+*.parquet
+*.pkl
+*.pickle
+*.dat
+*.zarr/
+*.fa
+*.fasta
+*.fa.gz
+*.fasta.gz
+*.gtf
+*.gtf.gz
+*.bw
+*.bigWig
+*.bed.gz
+*.vcf
+*.vcf.gz
+*.bam
+*.bai
+*.sam
+*.cram
+*.crai
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.gz
+
+# Training/runtime logs and experiment trackers.
+*.log
+*.out
+slurm-*.out
+wandb/
+lightning_logs/
+mlruns/
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/

@@ -1,0 +1,15 @@
+seed: 42
+task: k562_track_toy
+toy: true
+output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+run_name: toy_track
+data:
+  context_len: 4096
+  aggregation: gene_body_log1p_mean
+  target_standardize: true
+model:
+  preset: toy_linear
+train:
+  batch_size: 8
+  max_epochs: 2
+  allow_local: true

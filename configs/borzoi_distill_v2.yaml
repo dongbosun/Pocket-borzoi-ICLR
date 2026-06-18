@@ -1,0 +1,45 @@
+seed: 42
+assets_config: configs/borzoi_assets.local.yaml
+manifest_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
+ref_labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_labels.parquet
+output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+
+primary_targets:
+  names: []
+  indices: []
+  max_primary: 1
+  fallback: high_variance_high_signal
+
+aux_targets:
+  k_aux: 16
+  min_k_aux: 8
+  exclude_primary: true
+  rank_by:
+    - correlation_with_primary_on_train_genes
+    - signal_variance
+    - finite_fraction
+
+profile_distill:
+  enabled: true
+  primary_profile_pca_components: 16
+  profile_downsample_bins: 384
+  use_gene_body_pool: true
+  use_tss_pool: true
+  use_center_pool: true
+
+middle_distill:
+  enabled: true
+  pooled_feature_dtype: float16
+  projection_method: pls
+  projection_components: 32
+  fallback_projection_method: pca
+  candidate_layer_name: auto
+
+student:
+  input_channels: 5
+  context_lengths: [65536, 131072, 196608, 393216]
+  default_context_len: 131072
+  gene_mask: true
+
+train:
+  allow_local: false

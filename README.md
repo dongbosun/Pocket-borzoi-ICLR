@@ -1,111 +1,176 @@
-# Pocket Borzoi
+# pocketreg-borzoi-mvp
 
-Pocket Borzoi is a research project about distilling the SNP perturbation behavior of large sequence-to-function models into tiny local experts. The main target is not to retrain a new personal-genomics model from cohort RNA-seq. Instead, we want a compact model that can quickly approximate how a large teacher such as Borzoi responds to a ref/alt sequence change for a specific query like tissue, track, gene, or endpoint.
+This repo is an MVP scaffold for distilling one Borzoi / Mini-Borzoi K562 RNA-seq endpoint into small local DNA-sequence student models.
 
-## Project Goal
+Current delivery status: Phase 0 and Phase 1 only. Real Borzoi teacher inference, real student training, cache merging, and full evaluation are intentionally guarded placeholders for later phases.
 
-We care about the counterfactual effect of a variant on a teacher model:
+## What This Repo Does
 
-- input: a reference sequence, an alternate sequence, and a query
-- teacher: a large model such as Borzoi or AlphaGenome
-- output: the predicted delta induced by the SNP or small variant
+Week 2 target:
 
-In short, this project aims to distill the variant-effect operator rather than distill the full teacher.
+`S_track(sequence around gene g) ~= q(Borzoi_K562(sequence around gene g))`
 
-## Core Framing
+where `q` defaults to `log1p(mean selected K562 RNA-seq coverage over gene body bins)`.
 
-The guiding story for this repository is:
+Week 3 target:
 
-1. Large genomic foundation models are powerful but expensive to run.
-2. Many practical users only need a narrow query, such as one tissue or one gene-level endpoint.
-3. That narrow query should be compressible into a small expert model that runs locally.
+`S_delta(ref_seq, alt_seq, gene metadata) ~= q(Borzoi_K562(x_alt)) - q(Borzoi_K562(x_ref))`
 
-This suggests a query-conditioned or tissue-specific expert bank:
+Phase 0/1 currently provides:
 
-- one expert per tissue, endpoint, or task slice
-- a lightweight router that selects the right expert
-- optional fallback to the full teacher when uncertainty is high
+- repo/package skeleton
+- cluster safety guard
+- toy CPU smoke pipeline
+- unit tests
+- Borzoi asset config/setup scaffolding
+- Borzoi/K562 asset inspection
+- official processed-data inspection
+- K562 gene manifest builder
+- SLURM job templates for later phases
 
-## What This Project Is
+## What This Repo Does Not Do
 
-- Distillation of teacher SNP-effect predictions
-- Focus on compact, local, query-specific inference
-- A systems and modeling story around expert routing and specialization
-- A practical path toward fast local variant scoring
+- no full Borzoi training
+- no full multi-track distillation
+- no all-tissue model
+- no real personal-genome inference
+- no clinical phenotype prediction
+- no Decima implementation
+- no AlphaGenome implementation
+- no full multi-TB Borzoi training data download
 
-## What This Project Is Not
+## Cluster Rule
 
-- Not a general reimplementation of Borzoi
-- Not an individual-level expression prediction project in the SAGE-net sense
-- Not a cohort-specific fine-tuning paper on personal genomes
-- Not a broad multi-modal framework paper in the first iteration
+Heavy jobs must run through SLURM, not on a login/head node. The guard raises this exact error:
 
-Those directions may be interesting later, but they are intentionally out of scope for the first paper.
+```text
+Refusing to run heavy task {task_name} on login/head node. Submit via sbatch or pass --allow-local only for debugging.
+```
 
-## Working Hypothesis
+Heavy scripts call `assert_compute_context(...)`. During Phase 0/1, the future heavy scripts are placeholders, but they already enforce the guard.
 
-For many biologically meaningful queries, the expensive teacher response
+## Install
 
-`delta = q(T(x_alt)) - q(T(x_ref))`
+```bash
+conda create -n pocketreg_borzoi python=3.10
+conda activate pocketreg_borzoi
+pip install -r requirements.txt
+pip install -e .
+```
 
-can be approximated well by a much smaller student that only models the local counterfactual operator for that query.
+For Phase 0 toy smoke tests, only the light dependencies are needed: NumPy, PyYAML, matplotlib, and psutil. Real Borzoi and student training later require PyTorch, TensorFlow 2.15.x, pandas/pyarrow, pyfaidx, and the official Calico repos.
 
-## Proposed First Version
+## Official Assets
 
-The first version of the project should stay narrow and executable:
+Create a local asset config from explicit paths:
 
-- choose one main teacher: Borzoi
-- optionally add AlphaGenome later as a secondary teacher
-- focus on SNP or small variant perturbations
-- start with a small set of tissues or endpoints rather than all tracks
-- train compact experts on teacher-generated perturbation labels
-- evaluate both fidelity to the teacher and usefulness on downstream biological validation
+```bash
+python scripts/setup_borzoi_assets.py \
+  --work-dir external \
+  --k562-fold0-weights /path/to/fold0 \
+  --k562-fold1-weights /path/to/fold1 \
+  --k562-targets /path/to/targets.txt \
+  --k562-params /path/to/params.json \
+  --hg38-fasta /path/to/hg38.fa \
+  --gencode-gtf /path/to/gencode.gtf.gz \
+  --out-config configs/borzoi_assets.local.yaml
+```
 
-## Candidate Research Questions
+Clone official repos when needed:
 
-- How small can a local expert be while preserving teacher-quality SNP effect estimates?
-- When does a tissue-specific expert outperform a single shared student?
-- What metadata or context is enough for accurate local variant-effect prediction?
-- When should the system trust the expert versus defer to the full teacher?
+```bash
+python scripts/setup_borzoi_assets.py \
+  --work-dir external \
+  --download-official-repos \
+  --out-config configs/borzoi_assets.local.yaml
+```
 
-## Early Experimental Plan
+Inspect K562 metadata:
 
-1. Define a clean query space.
-   Start with tissue-specific or gene-specific SNP effect prediction instead of full teacher outputs.
+```bash
+python scripts/inspect_borzoi_assets.py \
+  --assets-config configs/borzoi_assets.local.yaml \
+  --out /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_assets_inspection
+```
 
-2. Build a perturbation label bank.
-   Use Borzoi to generate ref/alt deltas for curated sequence windows and selected queries.
+Inspect already processed official K562 data:
 
-3. Train small experts.
-   Compare shared students, tissue-specific students, and routed expert-bank variants.
+```bash
+python scripts/inspect_borzoi_processed_data.py \
+  --data-dir /path/to/borzoi/tutorials/latest/make_data_or_processed \
+  --out /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/processed_k562_inspection
+```
 
-4. Evaluate fidelity.
-   Measure correlation, ranking quality, calibration, and hard-example behavior against teacher outputs.
+## Phase 0 Smoke
 
-5. Evaluate biological relevance.
-   Test whether distilled scores preserve enrichment or discrimination on eQTL- or disease-relevant variant sets.
+The toy smoke path does not need Borzoi, TensorFlow, hg38, GPU, SLURM, pandas, or PyTorch.
 
-6. Study systems tradeoffs.
-   Report model size, latency, memory, and local usability relative to the teacher.
+```bash
+python scripts/run_smoke_test.py
+```
 
-## Success Criteria
+It creates toy FASTA/genes, fake motif teacher labels, fake delta labels, toy predictions, plots, and metrics under `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/toy_smoke`.
 
-An initial submission would be compelling if we can show:
+## Phase 1 Manifest
 
-- strong agreement with Borzoi on selected variant-effect queries
-- large reductions in runtime and model footprint
-- evidence that specialized experts are better than a single tiny generic student
-- a clean story that the method distills counterfactual variant effects, not full-sequence function prediction
+Build a real gene manifest after assets have been inspected:
 
-## Immediate Repository Roadmap
+```bash
+python scripts/build_k562_gene_manifest.py \
+  --assets-config configs/borzoi_assets.local.yaml \
+  --fasta /path/to/hg38.fa \
+  --gtf /path/to/gencode.vXX.annotation.gtf.gz \
+  --out /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet \
+  --input-len auto \
+  --output-num-bins auto \
+  --bin-size auto \
+  --target-index auto \
+  --aggregation gene_body_log1p_mean \
+  --max-genes 5000
+```
 
-- add project structure for data, labeling, training, and evaluation
-- define the first teacher-query task configuration
-- implement teacher perturbation data generation
-- implement a minimal student baseline
-- add expert-bank and routing experiments
-- write reproducible evaluation scripts and experiment tracking
+If model dimensions cannot be detected from params, pass `--input-len`, `--output-num-bins`, and `--bin-size` explicitly. This repo intentionally does not hard-code full-Borzoi dimensions.
 
-## Status
+## Later Week 2 Commands
 
-This repository is currently in the planning and bootstrap stage. The README is intended to serve as the project north star while we build the first experimental pipeline.
+These commands are documented now, but the implementation is reserved for Phase 2/3.
+
+```bash
+python scripts/make_teacher_ref_shards.py ...
+python scripts/submit_sbatch.py --job jobs/teacher_ref_k562_array.sbatch --array 0-31 --export ...
+sbatch jobs/merge_ref_labels.sbatch
+sbatch jobs/train_track_student.sbatch
+sbatch jobs/evaluate_track_student.sbatch
+sbatch jobs/benchmark_student.sbatch
+```
+
+## Later Week 3 Commands
+
+Synthetic SNV generation is available as a light utility. Teacher delta inference and delta training are later-phase placeholders.
+
+```bash
+sbatch jobs/generate_snvs.sbatch
+python scripts/make_teacher_delta_shards.py ...
+python scripts/submit_sbatch.py --job jobs/teacher_delta_k562_array.sbatch --array 0-63 --export ...
+sbatch jobs/merge_delta_labels.sbatch
+sbatch jobs/train_delta_student.sbatch
+sbatch jobs/evaluate_delta_student.sbatch
+```
+
+## Output Files
+
+- manifests: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/`
+- synthetic variants: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/variants/`
+- teacher cache: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/`
+- run checkpoints/metrics/plots: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/`
+- reports: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/`
+- benchmarks: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/benchmarks/`
+- SLURM logs: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/`
+
+## Known Caveats
+
+- K562 tutorial / Mini-Borzoi models may have different input and output lengths from full Borzoi.
+- Teacher pseudo-labels are not real coverage labels.
+- Processed K562 coverage-label mode is optional and must be inspected before use.
+- Synthetic SNP delta is teacher fidelity only, not biological validation.
+- Later stages need eQTL or MPRA validation.

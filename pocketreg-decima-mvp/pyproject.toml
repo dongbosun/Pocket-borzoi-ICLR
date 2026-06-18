@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pocketreg-decima-mvp"
+version = "0.1.0"
+description = "Week-1 MVP for distilling one Decima pseudobulk prediction into a small local DNA CNN."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "torch",
+  "numpy",
+  "pandas",
+  "scipy",
+  "scikit-learn",
+  "anndata",
+  "h5py",
+  "pyfaidx",
+  "huggingface_hub",
+  "pyarrow",
+  "tqdm",
+  "matplotlib",
+  "pyyaml",
+  "psutil",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+logging = ["rich", "tensorboard", "wandb"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"

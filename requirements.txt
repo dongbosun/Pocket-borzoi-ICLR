@@ -1,0 +1,19 @@
+numpy
+pyyaml
+matplotlib
+psutil
+
+# Optional but expected for real Borzoi/student runs.
+torch
+tensorflow==2.15.*
+pandas
+scipy
+scikit-learn
+pyfaidx
+pysam
+h5py
+zarr
+pyarrow
+tqdm
+pytest
+rich
