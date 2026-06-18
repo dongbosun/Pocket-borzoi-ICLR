@@ -19,17 +19,17 @@ from pocketreg.training.metrics import pearsonr, r2_score  # noqa: E402
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--middle-index", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_pooled.index.parquet", type=Path)
-    parser.add_argument("--middle-features", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_pooled.features.npz", type=Path)
-    parser.add_argument("--rich-labels", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich.labels.parquet", type=Path)
-    parser.add_argument("--profile-pca", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_profile_pca_labels.parquet", type=Path)
-    parser.add_argument("--aux-pca", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_aux_pca_labels.parquet", type=Path)
+    parser.add_argument("--middle-index", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_pooled.index.parquet", type=Path)
+    parser.add_argument("--middle-features", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_pooled.features.npz", type=Path)
+    parser.add_argument("--rich-labels", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich.labels.parquet", type=Path)
+    parser.add_argument("--profile-pca", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_profile_pca_labels.parquet", type=Path)
+    parser.add_argument("--aux-pca", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_aux_pca_labels.parquet", type=Path)
     parser.add_argument("--feature-key", default="features_mean")
     parser.add_argument("--components", type=int, default=32)
     parser.add_argument("--method", default="pls", choices=["pls", "pca"])
-    parser.add_argument("--out-labels", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_projection_labels.parquet", type=Path)
-    parser.add_argument("--out-model", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_projection_model.joblib", type=Path)
-    parser.add_argument("--report-dir", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_middle_projection", type=Path)
+    parser.add_argument("--out-labels", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_projection_labels.parquet", type=Path)
+    parser.add_argument("--out-model", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_projection_model.joblib", type=Path)
+    parser.add_argument("--report-dir", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_middle_projection", type=Path)
     return parser.parse_args()
 
 

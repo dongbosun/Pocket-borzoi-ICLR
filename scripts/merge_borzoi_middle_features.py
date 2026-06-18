@@ -17,8 +17,8 @@ from pocketreg.borzoi.middle_features import write_json  # noqa: E402
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--cache-dir", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/middle_feature_shards", type=Path)
-    parser.add_argument("--out-prefix", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_pooled", type=Path)
+    parser.add_argument("--cache-dir", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/middle_feature_shards", type=Path)
+    parser.add_argument("--out-prefix", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_middle_pooled", type=Path)
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
 

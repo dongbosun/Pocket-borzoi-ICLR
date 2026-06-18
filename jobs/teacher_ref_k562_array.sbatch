@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=teacher_ref_k562
 #SBATCH --partition=zhanglab.p
-#SBATCH --output=/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.out
-#SBATCH --error=/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.err
+#SBATCH --output=/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.out
+#SBATCH --error=/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.err
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
@@ -23,11 +23,11 @@ if [[ -n "$CONDA_SH" && -f "$CONDA_SH" ]]; then
   conda activate "$CONDA_ENV"
 fi
 cd "$REPO_ROOT"
-mkdir -p /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/cache/cuda "${CACHE_DIR:?CACHE_DIR required}"
-export CUDA_CACHE_PATH="${CUDA_CACHE_PATH:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/cache/cuda}"
+mkdir -p /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/cache/cuda "${CACHE_DIR:?CACHE_DIR required}"
+export CUDA_CACHE_PATH="${CUDA_CACHE_PATH:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/cache/cuda}"
 TASK_ID_PADDED=$(printf "%03d" "${SLURM_ARRAY_TASK_ID:?SLURM_ARRAY_TASK_ID required}")
 PYTHON_BIN="${PYTHON_BIN:-python3}"
-export PYTHONPATH="$REPO_ROOT/src:/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/repos/baskerville/src:/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/repos/borzoi/src:${PYTHONPATH:-}"
+export PYTHONPATH="$REPO_ROOT/src:/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/repos/baskerville/src:/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/repos/borzoi/src:${PYTHONPATH:-}"
 PY_SITE=$("$PYTHON_BIN" -c 'import site; print(site.getsitepackages()[0])')
 export PATH="$PY_SITE/nvidia/cuda_nvcc/bin:${PATH:-}"
 if [[ -z "${XLA_FLAGS:-}" ]]; then

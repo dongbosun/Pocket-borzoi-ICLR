@@ -1,8 +1,8 @@
 seed: 42
 assets_config: configs/borzoi_assets.local.yaml
-manifest_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
-ref_labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_labels.parquet
-output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+manifest_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
+ref_labels_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_labels.parquet
+output_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
 
 primary_targets:
   names: []

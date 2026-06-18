@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=cache_middle
 #SBATCH --partition=zhanglab.p
-#SBATCH --output=/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.out
-#SBATCH --error=/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.err
+#SBATCH --output=/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.out
+#SBATCH --error=/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%A_%a.err
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
@@ -16,20 +16,20 @@ echo "SLURM_ARRAY_TASK_ID=${SLURM_ARRAY_TASK_ID:-}"
 echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-}"
 REPO_ROOT="${REPO_ROOT:-$PWD}"
 cd "$REPO_ROOT"
-mkdir -p /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm "${CACHE_DIR:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/middle_feature_shards}"
+mkdir -p /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm "${CACHE_DIR:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/middle_feature_shards}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 export PYTHONPATH="$REPO_ROOT/src:${PYTHONPATH:-}"
 SITE_PACKAGES=$("$PYTHON_BIN" -c 'import site; print(site.getsitepackages()[0])')
 export LD_LIBRARY_PATH="$SITE_PACKAGES/nvidia/cudnn/lib:$SITE_PACKAGES/nvidia/cublas/lib:$SITE_PACKAGES/nvidia/cuda_runtime/lib:$SITE_PACKAGES/nvidia/cuda_nvrtc/lib:$SITE_PACKAGES/nvidia/cufft/lib:$SITE_PACKAGES/nvidia/curand/lib:$SITE_PACKAGES/nvidia/cusolver/lib:$SITE_PACKAGES/nvidia/cusparse/lib:$SITE_PACKAGES/nvidia/nccl/lib:${LD_LIBRARY_PATH:-}"
 TASK_ID="${SLURM_ARRAY_TASK_ID:-0}"
 PADDED=$(printf "%03d" "$TASK_ID")
-SHARD="${SHARD_DIR:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/processed/shards/ref_k562}/shard_${PADDED}.parquet"
-OUT_PREFIX="${CACHE_DIR:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/middle_feature_shards}/shard_${PADDED}"
+SHARD="${SHARD_DIR:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/processed/shards/ref_k562}/shard_${PADDED}.parquet"
+OUT_PREFIX="${CACHE_DIR:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/middle_feature_shards}/shard_${PADDED}"
 "$PYTHON_BIN" scripts/cache_borzoi_middle_features.py \
   --assets-config "${ASSETS_CONFIG:-configs/borzoi_assets.local.yaml}" \
   --shard "$SHARD" \
-  --fasta "${FASTA:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa}" \
-  --layer-report-dir "${LAYER_REPORT_DIR:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_teacher_layers}" \
+  --fasta "${FASTA:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa}" \
+  --layer-report-dir "${LAYER_REPORT_DIR:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_teacher_layers}" \
   --layer-name "${LAYER_NAME:-auto}" \
   --folds ${FOLDS:-0} \
   --out-prefix "$OUT_PREFIX" \

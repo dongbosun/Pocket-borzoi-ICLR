@@ -5,18 +5,18 @@ This repository lives in `$HOME` and must stay code-first and lightweight. Keep 
 Use this external storage root for all large or generated project artifacts:
 
 ```text
-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR
+/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR
 ```
 
 Canonical subdirectories:
 
 ```text
-dataset      -> /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset
-results      -> /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results
-checkpoints  -> /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/checkpoints
-interim      -> /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim
-logs         -> /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs
-plots_tables -> /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/plots
+dataset      -> /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset
+results      -> /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results
+checkpoints  -> /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/checkpoints
+interim      -> /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim
+logs         -> /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs
+plots_tables -> /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/plots
 ```
 
 Path conventions:

@@ -14,7 +14,7 @@ from pocketreg.borzoi.processed_data import inspect_processed_data_dir, write_pr
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-dir", required=True)
-    parser.add_argument("--out", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/processed_k562_inspection")
+    parser.add_argument("--out", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/processed_k562_inspection")
     parser.add_argument("--max-files", type=int, default=5000)
     args = parser.parse_args()
     report = inspect_processed_data_dir(args.data_dir, max_files=args.max_files)

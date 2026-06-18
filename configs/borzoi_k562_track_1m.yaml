@@ -1,10 +1,10 @@
 seed: 42
 task: k562_track
 assets_config: configs/borzoi_assets.local.yaml
-manifest_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
-labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_labels.parquet
+manifest_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
+labels_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_labels.parquet
 fasta_path: /path/to/hg38.fa
-output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+output_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
 run_name: k562_track_1m_128kb
 data:
   context_len: 131072

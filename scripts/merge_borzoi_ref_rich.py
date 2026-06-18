@@ -18,9 +18,9 @@ from pocketreg.data.manifest import read_table  # noqa: E402
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--cache-dir", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/ref_rich_shards", type=Path)
-    parser.add_argument("--out-prefix", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich", type=Path)
-    parser.add_argument("--manifest", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet", type=Path)
+    parser.add_argument("--cache-dir", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/ref_rich_shards", type=Path)
+    parser.add_argument("--out-prefix", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich", type=Path)
+    parser.add_argument("--manifest", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet", type=Path)
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args()
 

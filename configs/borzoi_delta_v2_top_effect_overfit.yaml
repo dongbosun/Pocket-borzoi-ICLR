@@ -1,9 +1,9 @@
 seed: 42
 task: k562_delta_v2
-delta_labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_delta_labels.parquet
-manifest_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
-fasta_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa
-output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+delta_labels_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_delta_labels.parquet
+manifest_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet
+fasta_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa
+output_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
 run_name: k562_delta_v2_top_effect_overfit_64kb
 
 data:

@@ -2,7 +2,7 @@ cluster:
   backend: slurm
   conda_env: pocketreg_borzoi
   conda_sh: ~/miniconda3/etc/profile.d/conda.sh
-  log_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm
+  log_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm
   scratch_env_vars: [SLURM_TMPDIR, TMPDIR]
 
 jobs:

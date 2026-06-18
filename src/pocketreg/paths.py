@@ -9,7 +9,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-DEFAULT_STORAGE_ROOT = Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR")
+DEFAULT_STORAGE_ROOT = Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR")
 STORAGE_ROOT_ENV = "POCKET_BORZOI_STORAGE_ROOT"
 
 

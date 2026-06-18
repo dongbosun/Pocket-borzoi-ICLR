@@ -1,9 +1,9 @@
-borzoi_repo: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/borzoi
-baskerville_repo: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/baskerville
-westminster_repo: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/westminster
-k562_weights_fold0: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/fold0_weights
-k562_weights_fold1: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/fold1_weights
-k562_targets: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/targets.txt
-k562_params: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/params.json
+borzoi_repo: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/borzoi
+baskerville_repo: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/baskerville
+westminster_repo: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/westminster
+k562_weights_fold0: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/fold0_weights
+k562_weights_fold1: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/fold1_weights
+k562_targets: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/targets.txt
+k562_params: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/assets/k562_mini/params.json
 hg38_fasta: /path/to/hg38.fa
 gencode_gtf: /path/to/gencode.vXX.annotation.gtf.gz

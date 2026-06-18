@@ -90,7 +90,7 @@ Inspect K562 metadata:
 ```bash
 python scripts/inspect_borzoi_assets.py \
   --assets-config configs/borzoi_assets.local.yaml \
-  --out /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_assets_inspection
+  --out /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_assets_inspection
 ```
 
 Inspect already processed official K562 data:
@@ -98,7 +98,7 @@ Inspect already processed official K562 data:
 ```bash
 python scripts/inspect_borzoi_processed_data.py \
   --data-dir /path/to/borzoi/tutorials/latest/make_data_or_processed \
-  --out /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/processed_k562_inspection
+  --out /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/processed_k562_inspection
 ```
 
 ## Phase 0 Smoke
@@ -109,7 +109,7 @@ The toy smoke path does not need Borzoi, TensorFlow, hg38, GPU, SLURM, pandas, o
 python scripts/run_smoke_test.py
 ```
 
-It creates toy FASTA/genes, fake motif teacher labels, fake delta labels, toy predictions, plots, and metrics under `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/toy_smoke`.
+It creates toy FASTA/genes, fake motif teacher labels, fake delta labels, toy predictions, plots, and metrics under `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/toy_smoke`.
 
 ## Phase 1 Manifest
 
@@ -120,7 +120,7 @@ python scripts/build_k562_gene_manifest.py \
   --assets-config configs/borzoi_assets.local.yaml \
   --fasta /path/to/hg38.fa \
   --gtf /path/to/gencode.vXX.annotation.gtf.gz \
-  --out /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet \
+  --out /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet \
   --input-len auto \
   --output-num-bins auto \
   --bin-size auto \
@@ -159,13 +159,13 @@ sbatch jobs/evaluate_delta_student.sbatch
 
 ## Output Files
 
-- manifests: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/`
-- synthetic variants: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/variants/`
-- teacher cache: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/`
-- run checkpoints/metrics/plots: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/`
-- reports: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/`
-- benchmarks: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/benchmarks/`
-- SLURM logs: `/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/`
+- manifests: `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/`
+- synthetic variants: `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/variants/`
+- teacher cache: `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/`
+- run checkpoints/metrics/plots: `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/`
+- reports: `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/`
+- benchmarks: `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/benchmarks/`
+- SLURM logs: `/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/`
 
 ## Known Caveats
 

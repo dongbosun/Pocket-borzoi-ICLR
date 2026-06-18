@@ -1,5 +1,5 @@
 # Keep this home repo lightweight. Generated artifacts live under:
-# /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR
+# /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR
 
 # Local assets, downloaded references, cloned external repos, and generated data.
 /external/
@@ -16,7 +16,9 @@ configs/borzoi_assets.local.yaml
 /plots_tables/
 
 # Nested legacy project artifacts. Keep its source tree, but not generated data.
+/pocketreg-decima-mvp/data
 /pocketreg-decima-mvp/data/
+/pocketreg-decima-mvp/outputs
 /pocketreg-decima-mvp/outputs/
 
 # Model and intermediate artifacts should never be committed from any path.

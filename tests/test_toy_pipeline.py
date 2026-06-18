@@ -12,7 +12,7 @@ class ToyPipelineTest(unittest.TestCase):
         from run_smoke_test import main
 
         main()
-        metrics = Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/toy_smoke/metrics.json")
+        metrics = Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/toy_smoke/metrics.json")
         self.assertTrue(metrics.exists())
         data = json.loads(metrics.read_text())
         self.assertIn("track", data)

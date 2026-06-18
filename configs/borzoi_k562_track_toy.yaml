@@ -1,7 +1,7 @@
 seed: 42
 task: k562_track_toy
 toy: true
-output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+output_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
 run_name: toy_track
 data:
   context_len: 4096

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=cache_ref_rich_smoke
 #SBATCH --partition=zhanglab.p
-#SBATCH --output=/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%j.out
-#SBATCH --error=/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%j.err
+#SBATCH --output=/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%j.out
+#SBATCH --error=/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm/%x_%j.err
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=48G
@@ -15,7 +15,7 @@ echo "SLURM_JOB_ID=${SLURM_JOB_ID:-}"
 echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-}"
 REPO_ROOT="${REPO_ROOT:-$PWD}"
 cd "$REPO_ROOT"
-mkdir -p /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache
+mkdir -p /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/slurm /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 export PYTHONPATH="$REPO_ROOT/src:${PYTHONPATH:-}"
 SITE_PACKAGES=$("$PYTHON_BIN" -c 'import site; print(site.getsitepackages()[0])')
@@ -24,9 +24,9 @@ export LD_LIBRARY_PATH="$SITE_PACKAGES/nvidia/cudnn/lib:$SITE_PACKAGES/nvidia/cu
   --assets-config "${ASSETS_CONFIG:-configs/borzoi_assets.local.yaml}" \
   --distill-config "${DISTILL_CONFIG:-configs/borzoi_distill_v2.yaml}" \
   --target-config "${TARGET_CONFIG:-configs/borzoi_k562_targets.local.yaml}" \
-  --manifest "${MANIFEST:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet}" \
-  --fasta "${FASTA:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa}" \
-  --out-prefix "${OUT_PREFIX:-/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich_smoke}" \
+  --manifest "${MANIFEST:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet}" \
+  --fasta "${FASTA:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa}" \
+  --out-prefix "${OUT_PREFIX:-/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich_smoke}" \
   --n "${N:-16}" \
   --batch-size "${BATCH_SIZE:-1}" \
   --profile-downsample-bins "${PROFILE_BINS:-384}" \

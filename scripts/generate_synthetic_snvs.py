@@ -20,7 +20,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--fasta", required=True)
-    parser.add_argument("--out", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/variants/k562_synthetic_snvs.parquet")
+    parser.add_argument("--out", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/variants/k562_synthetic_snvs.parquet")
     parser.add_argument("--snvs-per-gene", type=int, default=50)
     parser.add_argument("--region", default="gene_body_plus_tss_flank")
     parser.add_argument("--tss-flank", type=int, default=32768)

@@ -18,7 +18,7 @@ def main() -> None:
     parser.add_argument("--array")
     parser.add_argument("--export")
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--submissions-dir", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/logs/submissions")
+    parser.add_argument("--submissions-dir", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/logs/submissions")
     parser.add_argument("extra", nargs="*")
     args = parser.parse_args()
     cmd = build_sbatch_command(Path(args.job), array=args.array, export=args.export, extra_args=args.extra)

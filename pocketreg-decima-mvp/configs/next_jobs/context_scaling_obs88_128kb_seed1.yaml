@@ -1,8 +1,8 @@
 seed: 1
-manifest_path: /home/dongbos/Pocket-borzoi-ICLR/pocketreg-decima-mvp/data/processed/decima_v2_astro_full_128kb/manifest.parquet
-fasta_path: /home/dongbos/Pocket-borzoi-ICLR/external/reference/hg38/hg38.fa
-sequence_cache_dir: /home/dongbos/Pocket-borzoi-ICLR/pocketreg-decima-mvp/outputs/sequence_cache/obs88_full/context_131072
-output_dir: /home/dongbos/Pocket-borzoi-ICLR/pocketreg-decima-mvp/outputs/runs/context_scaling_obs88_128kb_seed1
+manifest_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/pocketreg-decima-mvp/data/processed/decima_v2_astro_full_128kb/manifest.parquet
+fasta_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/external/reference/hg38/hg38.fa
+sequence_cache_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/pocketreg-decima-mvp/outputs/sequence_cache/obs88_full/context_131072
+output_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/pocketreg-decima-mvp/outputs/runs/context_scaling_obs88_128kb_seed1
 context_len: 131072
 model:
   preset: tcn_tiny

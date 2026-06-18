@@ -31,7 +31,7 @@ def main() -> None:
     parser.add_argument("--assets-config", required=True)
     parser.add_argument("--fasta")
     parser.add_argument("--gtf")
-    parser.add_argument("--out", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet")
+    parser.add_argument("--out", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/k562_gene_manifest.parquet")
     parser.add_argument("--input-len", default="auto", type=int_or_auto)
     parser.add_argument("--output-num-bins", default="auto", type=int_or_auto)
     parser.add_argument("--bin-size", default="auto", type=int_or_auto)

@@ -1,9 +1,9 @@
 seed: 42
 task: k562_delta
 assets_config: configs/borzoi_assets.local.yaml
-delta_labels_path: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_delta_labels.parquet
+delta_labels_path: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_delta_labels.parquet
 fasta_path: /path/to/hg38.fa
-output_dir: /extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
+output_dir: /extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs
 run_name: k562_delta_1m_32kb
 data:
   local_context_len: 32768

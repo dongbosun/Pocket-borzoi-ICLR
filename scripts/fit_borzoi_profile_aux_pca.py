@@ -23,10 +23,10 @@ from pocketreg.borzoi.profile_pca import (  # noqa: E402
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--rich-labels", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich.labels.parquet", type=Path)
-    parser.add_argument("--profiles", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich.profiles.npz", type=Path)
-    parser.add_argument("--out-dir", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache", type=Path)
-    parser.add_argument("--report-dir", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_profile_aux_pca", type=Path)
+    parser.add_argument("--rich-labels", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich.labels.parquet", type=Path)
+    parser.add_argument("--profiles", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/k562_ref_rich.profiles.npz", type=Path)
+    parser.add_argument("--out-dir", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache", type=Path)
+    parser.add_argument("--report-dir", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_profile_aux_pca", type=Path)
     parser.add_argument("--profile-components", type=int, default=16)
     parser.add_argument("--aux-components", type=int, default=8)
     parser.add_argument("--profile-key", default="profiles_mean")

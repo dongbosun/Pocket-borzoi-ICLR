@@ -28,7 +28,7 @@ def write_csv(rows: list[dict], path: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--assets-config", required=True)
-    parser.add_argument("--out", default="/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_assets_inspection")
+    parser.add_argument("--out", default="/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/reports/borzoi_assets_inspection")
     parser.add_argument("--test-model-load", action="store_true")
     parser.add_argument("--allow-local", action="store_true")
     parser.add_argument("--toy", action="store_true")

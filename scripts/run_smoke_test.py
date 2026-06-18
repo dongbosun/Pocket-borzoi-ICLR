@@ -73,11 +73,11 @@ def fake_q(seq: str, rng: random.Random) -> float:
 def main() -> None:
     set_seed(42)
     rng = random.Random(42)
-    out = Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/toy_smoke")
-    checkpoint_dir = Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/checkpoints/toy_smoke")
+    out = Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/results/runs/toy_smoke")
+    checkpoint_dir = Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/checkpoints/toy_smoke")
     out.mkdir(parents=True, exist_ok=True)
     checkpoint_dir.mkdir(parents=True, exist_ok=True)
-    fasta_path = Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/raw/toy.fa")
+    fasta_path = Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/raw/toy.fa")
     write_toy_fasta(fasta_path, rng)
     fasta = FastaReader(fasta_path)
 
@@ -94,14 +94,14 @@ def main() -> None:
         min_gene_overlap_fraction=0.1,
         source="toy",
     )
-    write_table(rows, Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/toy_gene_manifest.parquet"))
+    write_table(rows, Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/manifests/toy_gene_manifest.parquet"))
     (out / "manifest_summary.json").write_text(json.dumps(manifest_summary(rows), indent=2) + "\n")
 
     label_rows = []
     for row in rows:
         seq = fasta.fetch(row["chrom"], int(row["seq_start"]), int(row["seq_end"]))
         label_rows.append({**row, "q_teacher": fake_q(seq, rng), "status": "success"})
-    write_table(label_rows, Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/toy_ref_labels.parquet"))
+    write_table(label_rows, Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/toy_ref_labels.parquet"))
 
     train = [row for row in label_rows if row["split"] == "train"]
     test = [row for row in label_rows if row["split"] == "test"]
@@ -137,7 +137,7 @@ def main() -> None:
                 tss_flank=2048,
             )
         )
-    write_table(variants, Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/dataset/variants/toy_synthetic_snvs.parquet"))
+    write_table(variants, Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/dataset/variants/toy_synthetic_snvs.parquet"))
 
     ref_by_example = {row["example_id"]: row for row in rows}
     delta_rows = []
@@ -152,7 +152,7 @@ def main() -> None:
                 "status": "success",
             }
         )
-    write_table(delta_rows, Path("/extra/zhanglab0/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/toy_delta_labels.parquet"))
+    write_table(delta_rows, Path("/extra/zhanglab1/INDV/dongbos/Pocket-borzoi-ICLR/interim/teacher_cache/toy_delta_labels.parquet"))
 
     split_delta_train = [row for row in delta_rows if row["split"] == "train"]
     x_delta_train = np.vstack(
